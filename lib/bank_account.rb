@@ -20,8 +20,8 @@ class BankAccount
     (balance>0 && status = "open") ? true : false
   end
 
-  
-    
+
+
 
 
 end

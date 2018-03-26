@@ -15,17 +15,27 @@ class Transfer
   end
 
   def execute_transaction
-    if self.valid? == false 
+    if self.valid? == false
       @status = "rejected"
       "Transaction rejected. Please check your account balance."
-    elsif @status == "complete"
-      "Transaction already completed.  Duplicate transaction not permitted."
+    elsif @status != "pending"
+      "Transaction not permitted."
     else
       @sender.deposit(-@amount)
       @receiver.deposit(@amount)
       @status = "complete"
     end
   end
+
+  def reverse_transfer
+    if @status == "complete"
+      @sender.deposit(@amount)
+      @receiver.deposit(-@amount)
+      @status = "reversed"
+    else
+      "Transaction cannot be reversed."
+    end
+
 
 
 end

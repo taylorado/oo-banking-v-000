@@ -15,9 +15,11 @@ class Transfer
   end
 
   def execute_transaction
-    if self.valid? == false || @status == "complete"
+    if self.valid? == false 
       @status = "rejected"
       "Transaction rejected. Please check your account balance."
+    elsif @status == "complete"
+      "Transaction already completed.  Duplicate transaction not permitted."
     else
       @sender.deposit(-@amount)
       @receiver.deposit(@amount)

@@ -35,6 +35,7 @@ class Transfer
     else
       "Transaction cannot be reversed."
     end
+  end
 
 
 
